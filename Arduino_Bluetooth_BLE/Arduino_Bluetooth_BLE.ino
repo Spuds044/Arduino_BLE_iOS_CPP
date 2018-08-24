@@ -44,7 +44,7 @@ void loop() // run until the end of time
       digitalWrite(9, HIGH);//Turn on the really bright light
       Serial.println(String(inData));//Write out the assembled command
     }
-    else if(command==true && String(inData)=="ASSISTANCE ON ROUTE")//Let's start flashing.
+    else if(command==true && String(inData)=="ASSISTANCE eN ROUTE")//Let's start flashing.
     {
       command=false;//Reset for the next comment
       digitalWrite(9, LOW);//Blessed darkness
