@@ -1,12 +1,12 @@
 #include <SoftwareSerial.h>
-//This is a very simple sketch for chatting with the iPhone, iPad, or Desktop
+//This is a sketch for chatting with a Phone or tablet.
 //It will get a command to turn the light on or a seperate command to turn it off.
 //AT commands can be sent through the IDE Monitor command. Or just data can be sent back to the phone.
 SoftwareSerial BLE_Serial(3, 4); // RX, TX
-char inData[64]; // Much larger than any expected command
-int i=0;//I like to put these variables here as for embedded programming it smooths things along
-int index=0;//This would be used as the pointer to where in the array the data stream is presently
-char inChar=-1;//This is a 
+char inData[64]; // Much larger than any expected command -  birrr
+int i=0;//
+int index=0;//This would is used as the pointer to where in the array the data stream is presently
+char inChar=-1;//This is a base char, necessary later for transparency
 bool command=false;//This is a flag noting if a command just finished
 void setup()
 {
@@ -29,7 +29,7 @@ void loop() // run until the end of time
       if(inChar==10) //Command terminator detected
       {
         inData[index]='\0';//Close off the string
-        command=true;//This is a command
+        command=true;//This is a 1.0 command
         index=0;//reset 
       }
       else
@@ -44,14 +44,14 @@ void loop() // run until the end of time
       digitalWrite(9, HIGH);//Turn on the really bright light
       Serial.println(String(inData));//Write out the assembled command
     }
-    else if(command==true && String(inData)=="GOODBYE")//Let's start flashing.
+    else if(command==true && String(inData)=="ASSISTANCE ON ROUTE")//Let's start flashing.
     {
       command=false;//Reset for the next comment
       digitalWrite(9, LOW);//Blessed darkness
       Serial.println(String(inData));//Write out the assembled command
     }
   }
-  if(Serial.available())//When stuff is typed in the Arduino monitor window then send it up to the computer
+  if(Serial.available())//When stuff is typed in the Arduino monitor window it can send it up to the computer
   {
     BLE_Serial.write(Serial.read());//Read it and pass it along.
   }
